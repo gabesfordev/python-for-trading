@@ -30,7 +30,16 @@ def main():
     dates = pd.date_range('2020-01-01', '2020-12-31')
     symbols = ['AAPL', 'FB', 'GLD', 'IBM', 'KO']
     df = get_data(symbols, dates)
-    print(df)
+    
+    # Slice by row range (dates) using DataFrame.loc[] selector
+    # print(df.loc['2020-01-01':'2020-01-31'])
+
+    # Slice by column (symbols)
+    # print(df['GLD']) # a single label selects single column
+    # print(df[['GLD', 'KO']]) # a list of labels selects a multyple columns
+
+    # Slice by row and column
+    print(df.loc['2020-01-10':'2020-01-15', ['SPY', 'KO']])
 
 if __name__=="__main__":
     main()

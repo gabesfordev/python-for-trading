@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def symbol_to_path(symbol, base_dir='data'):
     """Return CSV file path to given ticker symbol."""
@@ -25,12 +26,18 @@ def get_data(symbols, dates):
 
     return df
 
+def plot_data(df, title='Stock Prices'):
+    """Plot stock prices"""
+    ax = df.plot(title=title, fontsize=10)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Price')
+    plt.savefig('graphs/ploting_multypel_stocks.png')
 
 def main():
     dates = pd.date_range('2020-01-01', '2020-12-31')
     symbols = ['AAPL', 'FB', 'GLD', 'IBM', 'KO']
     df = get_data(symbols, dates)
-    print(df)
+    plot_data(df)
 
 if __name__=="__main__":
     main()
